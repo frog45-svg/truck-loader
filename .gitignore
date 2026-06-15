@@ -4,3 +4,6 @@ test-report.pdf
 .env
 .DS_Store
 scratch/
+test-cron.js
+test-client.js
+deploy.js

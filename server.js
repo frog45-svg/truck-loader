@@ -1,9 +1,11 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
 const generatePdf = require('./generatePdf');
+const { handleTelegramCronReport } = require('./cronReport');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -112,6 +114,9 @@ app.post('/api/generate-pdf', (req, res) => {
     res.status(500).json({ error: 'Failed to generate PDF.', details: err.message });
   }
 });
+
+// Secure Cron route for Telegram backups
+app.post('/api/cron/telegram-report', handleTelegramCronReport);
 
 // Initialize server after ensuring fonts are loaded
 ensureFonts().then(() => {
