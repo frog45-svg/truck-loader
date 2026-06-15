@@ -3,3 +3,4 @@ fonts/
 test-report.pdf
 .env
 .DS_Store
+scratch/
